@@ -1,0 +1,26 @@
+<div class="container">
+  
+  <div class="row pb-3">
+    <div class="col-md-12 text-center">
+      <h1>All Blogs</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div *ngFor="let blog of allBlogs" class="col-md-4 pt-2 pb-2">
+      <div class="card text-center">
+        <div class="card-header">
+          {{ blog.title | uppercase }}
+        </div>
+        <div class="card-body">
+          <p class="card-text">{{ blog.description }}</p>
+        </div>
+        <div class="card-footer text-muted">
+          <h6 class="pb-1">Posted on {{ blog.created | date }} by {{ blog.author }}</h6>
+          <a class="btn btn-primary" [routerLink]="['/blog',blog.blogId]">Read</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
