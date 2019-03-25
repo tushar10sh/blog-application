@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { BlogData } from '../blog-data';
-import { delay } from 'q';
+import { BlogService } from '../blog.service';
 
 @Component({
   selector: 'app-blog-view',
@@ -18,7 +18,7 @@ export class BlogViewComponent implements OnInit {
   ];
   public currentBlog: BlogData;
 
-  constructor(private _route: ActivatedRoute, private router: Router) { 
+  constructor(private _route: ActivatedRoute, private router: Router, private blogService: BlogService) { 
 
   }
 
@@ -28,11 +28,15 @@ export class BlogViewComponent implements OnInit {
   }
 
   public getSingleBlogInformation(currentBlogId: string): any {
-    for( let blog of this.allBlogs ) {
-      if ( blog.blogId == currentBlogId ) {
-        this.currentBlog = blog;
-        break;
+    
+    this.currentBlog = this.blogService.getSingleBlogInformation(currentBlogId).subscribe(
+      data => {
+        this.currentBlog = data["data"];
+      },
+      error => {
+        console.log(error.errorMessage);
       }
-    }
+    );
   }
+
 }
