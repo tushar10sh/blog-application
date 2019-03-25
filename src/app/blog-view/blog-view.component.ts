@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { BlogData } from '../blog-data';
+import { delay } from 'q';
 
 @Component({
   selector: 'app-blog-view',
