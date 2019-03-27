@@ -1,13 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule  } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
-// module for routing is already written by angular 
+// Module for routing is already written by angular 
 import { AppRoutingModule } from './app-routing.module';
+
+// Imports for notifications toasts
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
+// Components imports
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { BlogViewComponent } from './blog-view/blog-view.component';
@@ -35,7 +38,7 @@ import { BlogService } from './blog.service';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot() // toastr module
+    ToastrModule.forRoot() 
   ],
   providers: [BlogService],
   bootstrap: [AppComponent]

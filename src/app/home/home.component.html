@@ -17,7 +17,7 @@
         </div>
         <div class="card-footer text-muted">
           <h6 class="pb-1">Posted on {{ blog.created | date }} by {{ blog.author }}</h6>
-          <a class="btn btn-primary" [routerLink]="['/blog',blog.blogId]">Read</a>
+          <button class="btn btn-primary" [routerLink]="['/blog',blog.blogId]">Read</button>
         </div>
       </div>
     </div>

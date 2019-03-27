@@ -13,7 +13,7 @@
   <hr>
   <div class="row" *ngIf="currentBlog">
     <div class="col-md-4 text-center">
-      <a class="btn btn-primary" [routerLink]="['/edit',currentBlog.blogId]">Edit</a>
+      <button class="btn btn-primary" [routerLink]="['/edit',currentBlog.blogId]">Edit</button>
     </div>
     <div class="col-md-4 text-center">
       <a class="btn btn-danger" (click)="deleteBlog()">Delete</a>
