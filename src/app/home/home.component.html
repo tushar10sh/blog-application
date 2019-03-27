@@ -6,7 +6,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row" *ngIf="allBlogs.length>0">
     <div *ngFor="let blog of allBlogs" class="col-md-4 pt-2 pb-2">
       <div class="card text-center">
         <div class="card-header">

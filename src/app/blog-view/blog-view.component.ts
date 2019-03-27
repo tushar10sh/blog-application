@@ -3,11 +3,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { BlogData } from '../blog-data';
 import { BlogService } from '../blog.service';
+import { Location } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-blog-view',
   templateUrl: './blog-view.component.html',
-  styleUrls: ['./blog-view.component.css']
+  styleUrls: ['./blog-view.component.css'],
+  providers: [Location]
 })
 export class BlogViewComponent implements OnInit {
 
@@ -18,25 +21,52 @@ export class BlogViewComponent implements OnInit {
   ];
   public currentBlog: BlogData;
 
-  constructor(private _route: ActivatedRoute, private router: Router, private blogService: BlogService) { 
-
+  constructor(
+    private _route: ActivatedRoute, 
+    private router: Router, 
+    private blogService: BlogService,
+    private location: Location,
+    private toastr: ToastrService) { 
   }
 
   ngOnInit() {
     let currentBlogId = this._route.snapshot.paramMap.get('blogId');
+    console.log(currentBlogId); 
     this.getSingleBlogInformation(currentBlogId);
   }
 
   public getSingleBlogInformation(currentBlogId: string): any {
     
     this.currentBlog = this.blogService.getSingleBlogInformation(currentBlogId).subscribe(
-      data => {
+      (data) =>{
         this.currentBlog = data["data"];
       },
-      error => {
+      (error) =>{
         console.log(error.errorMessage);
       }
     );
   }
 
+  public deleteBlog(): any {
+    this.blogService.deleteBlog(this.currentBlog.blogId).subscribe(
+      (data) => {
+        this.toastr.success("Blog Deleted successfully", "Deleted", {
+          timeOut: 2000
+        });
+        setTimeout( () => {
+          this.router.navigate(['/home']);
+        }, 1000);
+      },
+      (error) => {
+        this.toastr.error("Error occurred while deleting blog", "Error", {
+          timeOut: 2000
+        });
+        console.log(error.errorMessage);
+      }
+    );
+  }
+
+  public goBack(): any {
+    this.location.back();
+  }
 }

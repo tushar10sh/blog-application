@@ -3,8 +3,8 @@
     <div class="col-md-12 text-center">
       <h2>{{currentBlog.title}}</h2>
       <p>posted by {{currentBlog.author}} on {{currentBlog.created | date}}</p>
-      <p *ngIf="currentBlog.tags.length!=undefined && currentBlog.tags.length>0">tags: <span *ngFor="let tag of currentBlog.tags; let last=last;">{{tag}}{{ last? '':', '}}</span></p>
-      <hr>
+      <p *ngIf="currentBlog.tags!=undefined && currentBlog.tags.length>0">tags: <span *ngFor="let tag of currentBlog.tags; let last=last;">{{tag}}{{ last? '':', '}}</span></p>
+      <hr *ngIf="currentBlog.tags!=undefined && currentBlog.tags.length>0">
       <div [innerHTML]="currentBlog.bodyHtml"></div>
       <hr>
       <h5>category : {{currentBlog.category}}</h5>
@@ -16,10 +16,10 @@
       <a class="btn btn-primary" [routerLink]="['/edit',currentBlog.blogId]">Edit</a>
     </div>
     <div class="col-md-4 text-center">
-      <a class="btn btn-danger">Delete</a>
+      <a class="btn btn-danger" (click)="deleteBlog()">Delete</a>
     </div>
     <div class="col-md-4 text-center">
-      <a class="btn btn-warning">GoBack</a>
+      <a class="btn btn-warning" (click)="goBack()">GoBack</a>
     </div>
   </div>
 </div>

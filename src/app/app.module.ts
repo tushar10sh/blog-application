@@ -1,10 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule  } from '@angular/forms';
 
 // module for routing is already written by angular 
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
-// import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { BlogViewComponent } from './blog-view/blog-view.component';
@@ -15,7 +18,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 // import statement for blog service 
 import { BlogService } from './blog.service';
-
 
 @NgModule({
   declarations: [
@@ -29,7 +31,11 @@ import { BlogService } from './blog.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot() // toastr module
   ],
   providers: [BlogService],
   bootstrap: [AppComponent]

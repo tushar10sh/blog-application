@@ -1,3 +1,30 @@
-<p>
-  blog-create works!
-</p>
+<div class="container">
+  <h1>Post your Blog!</h1>
+  <form #createBlogForm="ngForm" (ngSubmit)="createBlog()">
+    
+    <div class="form-group">
+      <label>Blog Title</label>
+      <input name="title" type="text" [(ngModel)]="newBlog.title" #title="ngModel" class="form-control" required>
+      <br/>
+      <div [hidden]="title.valid || title.pristine" class="alert alert-danger">Please provide a valid title.</div>
+    </div>
+
+    <div class="form-group">
+      <label>Blog Description</label>
+      <input name="description" type="text" [(ngModel)]="newBlog.description" #description="ngModel" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+      <label>Blog Content</label>
+      <textarea name="bodyHtml" type="text" [(ngModel)]="newBlog.bodyHtml" #bodyHtml="ngModel" class="form-control" rows="3" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <select name="category" [(ngModel)]="newBlog.category" #category="ngModel" class="form-control" required>
+        <option *ngFor="let category of possibleCategories" [value]="category">{{category}}</option>
+      </select>
+    </div>
+
+    <button type="submit" [disabled]="!createBlogForm.valid" class="btn btn-primary">Post</button>
+  </form>
+</div>
